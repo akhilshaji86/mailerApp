@@ -3,7 +3,7 @@
   <h1 class="heading">
     Mailer
   </h1>
-  <label class="email-label" for="your_mail">From (gmail ID) : </label>
+  <label class="email-label" for="your_mail">From <small>( gmail ID )</small> : </label>
 
   <input class="email-input" type="email" name="your_mail" id="" formControlName="fromEmail">
   <p class="error-msg email-input-error"
@@ -18,7 +18,7 @@
     *ngIf="emailForm.controls.password.hasError('required') && emailForm.controls.password.touched">*Please enter
     valid Password</p>
 
-  <label class="recipient-label" for="send_mail">Recipient emails : </label>
+  <label class="recipient-label" for="send_mail"> &nbsp; Recipient emails <br><small>(seperated by comma)</small> : </label>
   <textarea class="recipient-input" name="send_mail" formControlName="recipientMailId" id="" cols="30" rows="8"
     [(ngModel)]="toMailString"></textarea>
   <p class="error-msg recipient-input-error"
