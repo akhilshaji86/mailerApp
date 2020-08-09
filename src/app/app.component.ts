@@ -1,6 +1,6 @@
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -25,16 +25,32 @@ export class AppComponent {
       content: ['', [Validators.required]],
     });
   }
-  onSubmit(form: NgForm): void {
+  onSubmit(form: FormGroup): void {
     if (!form.invalid) {
-      debugger
-      const mailList = this.toMailString.split(',');
-      this.http.post('api/sendMail', {
-        fromMail: this.fromMailId,
-        toMailList: mailList,
-        subject: this.subjectOfMail,
-        content: this.mailContent
-      });
+      const mailList = form.controls.recipientMailId.value.split(',');
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+      // headers.append('Access-Control-Allow-Origin', 'allowedOrigin');
+
+      this.http.post('http://localhost:3000/api/sendMail', {
+        fromMail: form.controls.fromEmail.value,
+        password: form.controls.password.value,
+        toMailList: mailList.map(mail => mail.trim()),
+        subject: form.controls.subject.value,
+        content: form.controls.content.value
+      }, { headers }).subscribe((result: ResponseModel) => {
+        alert(result.message);
+      },
+        error => {
+          alert(error && error.error ? error.error.message : 'Service error');
+        });
+    }
+    else {
+      alert('Error in data entered');
     }
   }
+}
+export interface ResponseModel {
+  status: number;
+  data: any[];
+  message: string;
 }
