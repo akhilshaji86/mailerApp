@@ -1,17 +1,43 @@
-<form id=formId (ngSubmit)="sendMail(mailForm)" #mailForm="ngForm" class="container">
+<form id=formId [formGroup]="emailForm" class="container" (ngSubmit)="onSubmit(emailForm.value)">
+  <img class="icon-image" src="../assets/gmail.png" alt="">
   <h1 class="heading">
-    <img class="icon-image" src="../assets/favicon.svg" alt="">
     Mailer
   </h1>
-  <label class="email-label" for="your_mail">Enter your email : </label>
-  <input class="email-input" type="email" name="your_mail" id="" required [(ngModel)]="fromMailId">
+  <label class="email-label" for="your_mail">From (gmail ID) : </label>
+
+  <input class="email-input" type="email" name="your_mail" id="" formControlName="fromEmail">
+  <p class="error-msg email-input-error"
+    *ngIf="(emailForm.controls.fromEmail.hasError('pattern') ||emailForm.controls.fromEmail.hasError('required'))&& emailForm.controls.fromEmail.touched">
+    *Please enter
+    valid Email</p>
+
+
+  <label class="password-label" for="your_password">Password :</label>
+  <input class="password-input" type="password" name="your_password" minlength="8" id="" formControlName="password">
+  <p class="error-msg password-input-error"
+    *ngIf="emailForm.controls.password.hasError('required') && emailForm.controls.password.touched">*Please enter
+    valid Password</p>
+
   <label class="recipient-label" for="send_mail">Recipient emails : </label>
-  <textarea class="recipient-input" name="to-mails" id="" cols="30" rows="8" [(ngModel)]="toMailString"
-    required></textarea>
+  <textarea class="recipient-input" name="send_mail" formControlName="recipientMailId" id="" cols="30" rows="8"
+    [(ngModel)]="toMailString"></textarea>
+  <p class="error-msg recipient-input-error"
+    *ngIf="emailForm.controls.recipientMailId.hasError('required') && emailForm.controls.recipientMailId.touched">
+    *Please enter
+     Mail IDs</p>
   <label class="subject-label" for="subject">Subject :</label>
-  <input class="subject-input" type="text" name="subject">
+  <input class="subject-input" type="text" formControlName="subject" name="subject" [(ngModel)]="subjectOfMail">
+  <p class="error-msg subject-input-error"
+    *ngIf="emailForm.controls.subject.hasError('required') && emailForm.controls.subject.touched">
+    *Please enter
+    mail subject</p>
   <label class="content-label" for="subject">Content :</label>
-  <textarea class="content-input" name="subject" id="" cols="30" rows="8"></textarea>
+  <textarea class="content-input" name="subject" id="" cols="30" rows="8" formControlName="content"
+    [(ngModel)]="mailContent"></textarea>
+  <p class="error-msg content-input-error"
+    *ngIf="emailForm.controls.content.hasError('required') && emailForm.controls.content.touched">
+    *Please enter
+    mail Content</p>
   <button class="submit-btn" type="submit">Send</button>
   <div class="overlay"></div>
 </form>
