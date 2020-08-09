@@ -1,0 +1,22 @@
+<svg width="30" height="20" viewBox="0 0 191 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 36L0 144H191V36H0ZM95.5 112.582L178.205 49.9909H12.7946L95.5 112.582Z" fill="#AA7EF3"/>
+<g filter="url(#filter0_f)">
+<path d="M172 53L178.001 48.3227L171.989 48.3369L172 53Z" fill="#E1CBCB"/>
+</g>
+<rect x="20" width="151" height="54" fill="#E1CBCB"/>
+<g filter="url(#filter1_f)">
+<path d="M20 54L12.5 48H20V54Z" fill="#E1CBCB"/>
+</g>
+<defs>
+<filter id="filter0_f" x="167.989" y="44.3227" width="14.0228" height="12.6773" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter1_f" x="8.5" y="44" width="15.5" height="14" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur"/>
+</filter>
+</defs>
+</svg>
